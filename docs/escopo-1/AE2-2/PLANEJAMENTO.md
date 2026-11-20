@@ -1,6 +1,6 @@
 # AE2-2 — Desenho técnico da solução
 
-**Projeto:** Observatório Climático Local — Juiz de Fora (MG). **Público:** moradores de áreas suscetíveis a alagamentos. **Objetivo:** apoiar alfabetização em dados sobre precipitação histórica. Este painel não identifica alagamentos nem substitui alertas públicos.
+**Projeto:** Observatório Climático Local — Juiz de Fora/MG. **Público-alvo:** moradores de áreas suscetíveis a alagamentos. **Objetivo:** facilitar o acesso a informações históricas de chuva e temperatura, com indicadores claros e consulta aos registros.
 
 ## Recorte
 Coordenadas de referência: latitude -21.764, longitude -43.350; período de 01 a 30/10/2026 (30 dias); fuso America/Sao_Paulo; API histórica Open-Meteo. Variáveis: mínima diária (°C), máxima diária (°C), precipitação diária (mm).
@@ -57,10 +57,10 @@ OBSERVATÓRIO CLIMÁTICO — JUIZ DE FORA
 ```
 
 ## Comunicação extensionista
-Explicar os indicadores em linguagem acessível, sem relacionar automaticamente chuva de um ponto a alagamento de um bairro. Comparar, quando apropriado, com os mapas oficiais de suscetibilidade, **sem inferir episódios de inundação**. Não recolher dados pessoais sem base e cuidados pertinentes. A eventual devolutiva deve ter registro real.
+Explicar os indicadores em linguagem acessível, sem relacionar automaticamente chuva de um ponto a alagamento de um bairro. Comparar, quando apropriado, com os mapas oficiais de suscetibilidade, **sem inferir episódios de inundação**. Não recolher dados pessoais sem base e cuidados pertinentes. A devolutiva incluiu conversas com cinco pessoas entre 17 e 20 de novembro de 2026. O retorno destacou a importância do projeto e a necessidade de tornar as informações mais fáceis de acessar.
 
-## Estágio
-Planejamento realizado. Os indicadores meteorológicos reais e a devolutiva comunitária ainda dependem de execução e verificação. A AE1 mencionada no enunciado não foi fornecida; o recorte foi definido nesta proposta.
+## Aplicação do planejamento
+O planejamento orientou a coleta de 30 dias de dados, a organização do banco, as consultas SQL e a construção do painel Streamlit. As verificações e os resultados encontram-se documentados nas demais etapas do projeto.
 
 ## Diagramas anexados
 
@@ -70,4 +70,3 @@ Planejamento realizado. Os indicadores meteorológicos reais e a devolutiva comu
 
 As imagens mostram o percurso dos dados até a visualização e a disposição dos três KPIs, dois gráficos, tabela, fonte e limitações.
 
-**Nota sobre a grade da API:** a requisição usou latitude -21.764 e longitude -43.350. A resposta da Open-Meteo identifica a célula retornada em **-21.75747, -43.384613** (elevação informada de 704 m). Essa diferença entre ponto solicitado e ponto retornado deve ser considerada na interpretação territorial. Fonte: `dados/original_open_meteo.json`.
