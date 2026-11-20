@@ -40,3 +40,5 @@ Nesta fase não foram recolhidos dados pessoais da comunidade. **Não houve devo
 - [Prefeitura de Juiz de Fora — mapa de suscetibilidade a inundações](https://sisurb.pjf.mg.gov.br/server/rest/services/SISURB_dcivil/inundacao/MapServer/0)
 - [Resultados verificados da AE1-2](../escopo-1/AE1-2/RESULTADOS_EXECUCAO.md)
 - [Arquivos e scripts](../../README.md)
+
+**Nota sobre a grade da API:** a requisição usou latitude -21.764 e longitude -43.350. A resposta da Open-Meteo identifica a célula retornada em **-21.75747, -43.384613** (elevação informada de 704 m). Essa diferença entre ponto solicitado e ponto retornado deve ser considerada na interpretação territorial. Fonte: `dados/original_open_meteo.json`.
