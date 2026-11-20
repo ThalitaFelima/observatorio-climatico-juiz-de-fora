@@ -1,0 +1,42 @@
+name: Executar Observatório Climático
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/executar-observatorio.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  executar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Obter código
+        uses: actions/checkout@v4
+      - name: Preparar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Instalar dependências
+        run: python -m pip install -r requirements.txt
+      - name: Rodar testes
+        run: python -m unittest discover -s tests -v
+      - name: Coletar JSON original da Open-Meteo
+        run: python src/coleta.py
+      - name: Validar dados e carregar DuckDB
+        run: |
+          python src/banco.py
+          python src/banco.py
+      - name: Gerar resultados e evidências
+        run: python src/gerar_resultados.py
+      - name: Publicar resultados no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add dados/original_open_meteo.json dados/metadados_coleta.json dados/clima_diario.csv dados/qualidade.json dados/clima.duckdb docs/escopo-1/AE1-2/RESULTADOS_EXECUCAO.md
+          if ! git diff --cached --quiet; then
+            git commit -m "data: registrar coleta histórica e resultados verificados"
+            git push
+          fi
