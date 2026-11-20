@@ -47,7 +47,7 @@ python -m unittest discover -s tests -v
 streamlit run src/app.py
 ```
 
-A pasta `dados/` contém a resposta original da API, o CSV diário, os metadados de coleta, o relatório de qualidade e o banco DuckDB. Os arquivos podem ser reproduzidos pelos scripts. A chave composta `(cidade, data)` evita duplicações em novas cargas.
+O painel permite escolher um intervalo de dias, visualizar os resultados correspondentes e baixar a tabela selecionada em CSV. Ele consulta o banco em modo de leitura, sem repetir a coleta.\n\nA pasta `dados/` contém a resposta original da API, o CSV diário, os metadados de coleta, o relatório de qualidade e o banco DuckDB. Os arquivos podem ser reproduzidos pelos scripts. A chave composta `(cidade, data)` evita duplicações em novas cargas.
 
 ## Arquivos e entregas
 
@@ -61,7 +61,7 @@ A pasta `dados/` contém a resposta original da API, o CSV diário, os metadados
 | Gráficos | [Precipitação](docs/graficos/precipitacao_diaria.svg) · [Temperaturas](docs/graficos/temperaturas_diarias.svg) |
 | Comunicação com a comunidade | [Devolutiva](docs/devolutiva/RELATO_REAL.md) · [Guia de leitura](docs/devolutiva/GUIA_PARA_MORADORES.md) |
 
-Os códigos estão em `src/`, as consultas em `sql/`, os testes em `tests/` e a documentação em `docs/`. As conferências estão documentadas por aula: [Aula 1](docs/CONFERENCIA_AULA_1.md), [Aula 2](docs/CONFERENCIA_AULA_2.md) e [Aula 3](docs/CONFERENCIA_AULA_3.md). O andamento das atividades foi acompanhado pelas [issues](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues).
+Os códigos estão em `src/`, as consultas em `sql/`, os testes em `tests/` e a documentação em `docs/`. As conferências estão documentadas por aula: [Aula 1](docs/CONFERENCIA_AULA_1.md), [Aula 2](docs/CONFERENCIA_AULA_2.md), [Aula 3](docs/CONFERENCIA_AULA_3.md) e [Aula 4](docs/CONFERENCIA_AULA_4.md). O andamento das atividades foi acompanhado pelas [issues](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues).
 
 ## Devolutiva à comunidade
 
