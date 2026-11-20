@@ -6,6 +6,9 @@ on:
       - ".github/workflows/finalizar-entregas.yml"
       - "docs/final/RELATORIO_FINAL.md"
       - "docs/devolutiva/RELATO_REAL.md"
+      - "docs/escopo-1/AE1-2/RELATORIO_FINAL.md"
+      - "docs/escopo-1/AE2-2/PLANEJAMENTO.md"
+      - "README.md"
 
 permissions:
   contents: write
