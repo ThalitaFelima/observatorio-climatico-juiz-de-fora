@@ -61,7 +61,7 @@ A pasta `dados/` contém a resposta original da API, o CSV diário, os metadados
 | Gráficos | [Precipitação](docs/graficos/precipitacao_diaria.svg) · [Temperaturas](docs/graficos/temperaturas_diarias.svg) |
 | Comunicação com a comunidade | [Devolutiva](docs/devolutiva/RELATO_REAL.md) · [Guia de leitura](docs/devolutiva/GUIA_PARA_MORADORES.md) |
 
-Os códigos estão em `src/`, as consultas em `sql/`, os testes em `tests/` e a documentação em `docs/`. A conferência dos requisitos da primeira aula está registrada em [Conferência da Aula 1](docs/CONFERENCIA_AULA_1.md). O andamento das atividades foi acompanhado pelas [issues](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues).
+Os códigos estão em `src/`, as consultas em `sql/`, os testes em `tests/` e a documentação em `docs/`. As conferências das aulas estão em [Aula 1](docs/CONFERENCIA_AULA_1.md) e [Aula 2](docs/CONFERENCIA_AULA_2.md). O andamento das atividades foi acompanhado pelas [issues](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues).
 
 ## Devolutiva à comunidade
 
