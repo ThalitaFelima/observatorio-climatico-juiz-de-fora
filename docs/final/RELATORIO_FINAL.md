@@ -34,7 +34,7 @@ Apesar de haver precipitação registrada nos 30 dias, oito deles tiveram menos 
 
 ## 4. Painel de visualização
 
-O painel foi desenvolvido em Streamlit para reunir os indicadores e os registros em uma única interface. A visualização permite observar a distribuição da chuva ao longo do mês, comparar as temperaturas diárias e consultar a tabela de dados. A execução e a renderização foram verificadas por testes automatizados, com evidências disponíveis no repositório.
+O painel foi desenvolvido em Streamlit para reunir os indicadores e os registros em uma única interface. A visualização permite observar a distribuição da chuva ao longo do mês, comparar as temperaturas diárias e consultar a tabela de dados. Também é possível selecionar um intervalo de dias e baixar os registros correspondentes em CSV, facilitando a consulta das informações pelo público. A execução e a renderização foram verificadas por testes automatizados, com evidências disponíveis no repositório.
 
 ## 5. Devolutiva extensionista
 
