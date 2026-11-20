@@ -1,6 +1,6 @@
 # AE1-2 — Evidências da execução real
 
-**Origem:** API histórica Open-Meteo. **Data da coleta (UTC):** 2026-11-20T19:47:24.941985+00:00.
+**Origem:** API histórica Open-Meteo. **Data da coleta (UTC):** 2026-11-20T20:19:53.646964+00:00.
 **Localidade:** Juiz de Fora, MG (coordenadas de referência -21.764, -43.350).
 **Recorte:** 01 a 30 de outubro de 2026; fuso America/Sao_Paulo.
 **Parâmetros:** `https://archive-api.open-meteo.com/v1/archive?latitude=-21.764&longitude=-43.35&start_date=2026-10-01&end_date=2026-10-30&daily=temperature_2m_min%2Ctemperature_2m_max%2Cprecipitation_sum&timezone=America%2FSao_Paulo`.
@@ -18,7 +18,7 @@
 
 ## Indicadores e interpretação
 
-1. **Precipitação total:** **214,5 mm** (soma dos dias com informação). Indica o volume acumulado no ponto de referência, não volume de inundação urbana.
+1. **Precipitação total:** **214.49999999999997 mm** (soma dos dias com informação). Indica o volume acumulado no ponto de referência, não volume de inundação urbana.
 2. **Dias com chuva:** **30 dias** com precipitação superior a zero, entre **30 dias** válidos. Não deve ser confundido com dias de alagamento.
 3. **Maior precipitação diária:** **29.1 mm**, em **2026-10-30**. Isso não comprova evento de inundação.
 

@@ -10,5 +10,6 @@
     "timezone": "America/Sao_Paulo"
   },
   "url_consultada": "https://archive-api.open-meteo.com/v1/archive?latitude=-21.764&longitude=-43.35&start_date=2026-10-01&end_date=2026-10-30&daily=temperature_2m_min%2Ctemperature_2m_max%2Cprecipitation_sum&timezone=America%2FSao_Paulo",
-  "coletado_em_utc": "2026-11-20T19:47:24.941985+00:00"
+  "coletado_em_utc": "2026-11-20T20:19:53.646964+00:00",
+  "dias_retornados": 30
 }
