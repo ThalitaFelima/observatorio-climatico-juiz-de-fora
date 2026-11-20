@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - ".github/workflows/executar-observatorio.yml"
+      - "src/coleta.py"
+      - "src/banco.py"
+      - "tests/**"
 
 permissions:
   contents: write
