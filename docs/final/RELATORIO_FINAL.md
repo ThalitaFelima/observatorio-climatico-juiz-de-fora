@@ -1,47 +1,61 @@
 # Relatório Final — Observatório Climático Local
 
-**Juiz de Fora/MG · Público-alvo: moradores de áreas suscetíveis a alagamentos**
+**Juiz de Fora/MG | Projeto Integrador Extensionista 2**
 
-> Este relatório consolida as atividades apresentadas. O arquivo “Relatório Final” recebido era uma **proposta de composição**, não um enunciado oficial confirmado.
+## 1. Contextualização
 
-## Problema e solução
-O projeto busca ampliar a compreensão pública de precipitações históricas. Emprega API histórica Open-Meteo → coleta com Python/Requests e preservação de JSON → limpeza/validação com pandas → armazenamento DuckDB → consultas SQL → visualização no Streamlit → comunicação transparente sobre limites e unidades. O recorte é uma coordenada de referência (-21.764, -43.350) em Juiz de Fora, de **01 a 30 de outubro de 2026**; variáveis: precipitação diária (mm), temperatura mínima (°C) e máxima (°C).
+O Observatório Climático Local foi desenvolvido para organizar e apresentar dados históricos de chuva e temperatura de Juiz de Fora, com atenção especial à população de áreas sujeitas a alagamentos. A proposta surgiu da importância de tornar informações meteorológicas mais acessíveis e fáceis de compreender.
 
-## Dados, qualidade e reprodutibilidade
-A coleta real foi realizada em **20/11/2026 às 19:47:24 UTC**. Foram recuperados 30 dias, sem ausências nas variáveis escolhidas; a chave primária composta `(cidade,data)` e `UPSERT` impediram duplicação na segunda execução. Seis testes de qualidade passaram. Os arquivos originais, código SQL e relatório automático estão disponíveis neste repositório.
+O estudo utiliza 30 dias consecutivos, de 1º a 30 de outubro de 2026, e três variáveis: temperatura mínima, temperatura máxima e precipitação diária. A análise descreve condições meteorológicas do período e não tem a finalidade de prever eventos futuros.
 
-## Indicadores observados
-| Indicador | Resultado | Significado |
-| --- | ---: | --- |
-| Precipitação acumulada | **214,5 mm** | Soma no período selecionado |
-| Dias com precipitação > 0 mm | **30/30 dias** | Oito dias abaixo de 1 mm |
-| Maior chuva diária | **29,1 mm** | 30/10/2026 |
-| Temperatura mínima diária média | **16,73 °C** | Média de 30 mínimas |
-| Temperatura máxima diária média | **24,97 °C** | Média de 30 máximas |
+## 2. Desenvolvimento da solução
 
-![Gráfico de precipitação](../graficos/precipitacao_diaria.svg)
+A coleta foi realizada por meio da API histórica Open-Meteo, com Python e Requests. A resposta original foi preservada em JSON. Em seguida, os dados foram organizados e verificados com pandas, incluindo conferência de datas, tipos numéricos, valores ausentes, registros repetidos e coerência entre as temperaturas.
+
+Após a validação, os registros foram armazenados em um banco DuckDB, na tabela `clima_diario`. As consultas SQL produziram os indicadores apresentados no painel Streamlit, composto por três métricas, dois gráficos e uma tabela de consulta.
+
+O GitHub reúne os códigos, o banco de dados, os documentos e o histórico das alterações. A execução automatizada confirmou 30 registros distintos, sem duplicações nem campos meteorológicos ausentes.
+
+## 3. Resultados e interpretação
+
+| Indicador | Resultado |
+| --- | ---: |
+| Precipitação acumulada no período | **214,5 mm** |
+| Dias com precipitação superior a zero | **30 dias** |
+| Maior precipitação diária | **29,1 mm, em 30/10/2026** |
+| Média das temperaturas mínimas diárias | **16,73 °C** |
+| Média das temperaturas máximas diárias | **24,97 °C** |
+
+Apesar de haver precipitação registrada nos 30 dias, oito deles tiveram menos de 1 mm. Isso demonstra a importância de observar não apenas a quantidade de dias com chuva, mas também a intensidade dos acumulados.
+
+![Precipitação diária em outubro](../graficos/precipitacao_diaria.svg)
 
 ![Temperaturas mínimas e máximas](../graficos/temperaturas_diarias.svg)
 
-## Dashboard e público
-O painel `src/app.py` contém três cartões de KPI, série de chuva, série de temperaturas, tabela diária e advertências. A validação automática confirma comportamento técnico, mas isso não equivale à avaliação de usabilidade por moradores.
+## 4. Painel de visualização
 
-## Interpretação e limitações
-O recorte permite comparar dias mais ou menos chuvosos e compreender unidades de precipitação. Não permite verificar alagamentos, prever novos eventos ou estabelecer risco para um bairro específico. Uma única coordenada não representa toda a cidade; 30 dias não caracterizam tendência climática. A fonte pode utilizar dados modelados/em grade. Os mapas municipais de suscetibilidade são uma fonte **distinta** dos dados de chuva; não se devem confundir suscetibilidade espacial e ocorrência de evento.
+O painel foi desenvolvido em Streamlit para reunir os indicadores e os registros em uma única interface. A visualização permite observar a distribuição da chuva ao longo do mês, comparar as temperaturas diárias e consultar a tabela de dados. A execução e a renderização foram verificadas por testes automatizados, com evidências disponíveis no repositório.
 
-## Ética e devolutiva
+## 5. Devolutiva extensionista
 
-Conforme relato da responsável pelo projeto, **cinco pessoas** foram consultadas em conversas realizadas de **17 a 20 de novembro de 2026**, durante as quais foram apresentados a API meteorológica, o banco de dados e os benefícios esperados do observatório. As pessoas demonstraram satisfação e consideraram o registro importante, mas apontaram que **a dificuldade de acesso às informações pode prejudicar sua utilidade**. Trata-se de retorno qualitativo inicial, sem questionário formal, transcrições ou identificação individual, que não deve ser interpretado como pesquisa representativa.
+Entre 17 e 20 de novembro de 2026, conversei com cinco pessoas para apresentar a API, a estrutura do banco de dados e os benefícios do observatório. A recepção foi positiva e os participantes consideraram importante reunir e preservar essas informações. Entretanto, também observaram que o acesso difícil aos registros pode limitar sua utilidade para a população.
 
-Esse retorno orienta a melhoria da linguagem, da navegação e da divulgação do painel para facilitar o acesso à informação. Não foram publicados dados pessoais e não se afirma que houve redução de risco ou impacto social mensurado. A descrição completa consta em [Relato da devolutiva](../devolutiva/RELATO_REAL.md).
+Essa contribuição mostrou que uma solução de dados não deve ser pensada apenas do ponto de vista técnico. As informações precisam estar organizadas e ser apresentadas em linguagem clara, de modo que possam ser consultadas por pessoas que não têm familiaridade com bancos de dados ou indicadores meteorológicos.
 
-## Critérios de sucesso
-**Verificados:** coleta preservada, 30 registros, 0 duplicidades, três KPIs, documentação versionada, testes e CI aprovados. **Ainda dependem de ação real:** avaliação estruturada da usabilidade e da utilidade pública em uma amostra maior. Evoluções futuras: série maior, múltiplas coordenadas e integração responsável com registros oficiais de ocorrência.
+A atividade foi registrada de forma descritiva, sem identificação pessoal dos participantes. Mais detalhes constam no [registro da devolutiva](../devolutiva/RELATO_REAL.md).
 
-## Fontes
-- [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api)
+## 6. Limitações e possibilidades de continuidade
+
+Os dados analisados representam uma área de referência do município e não permitem determinar se houve alagamento em determinada rua ou bairro. O período de 30 dias também é insuficiente para estabelecer tendências climáticas de longo prazo. Como os dados históricos da Open-Meteo são apresentados em grade, sua posição de referência deve ser considerada na interpretação.
+
+Como continuidade, seria interessante ampliar a série histórica, tornar o painel mais simples de acessar e, futuramente, relacionar os indicadores a informações oficiais sobre suscetibilidade a inundações, respeitando as diferenças entre chuvas registradas e ocorrências de alagamentos.
+
+## 7. Considerações finais
+
+O desenvolvimento do Observatório Climático Local permitiu aplicar diferentes etapas de um projeto de dados, desde a coleta até a comunicação dos resultados. A base foi organizada, os indicadores foram calculados e o painel foi colocado em funcionamento. A devolutiva reforçou que a disponibilização acessível das informações é tão importante quanto a sua organização técnica.
+
+## Referências
+
+- [Open-Meteo — API histórica](https://open-meteo.com/en/docs/historical-weather-api)
 - [Prefeitura de Juiz de Fora — mapa de suscetibilidade a inundações](https://sisurb.pjf.mg.gov.br/server/rest/services/SISURB_dcivil/inundacao/MapServer/0)
-- [Resultados verificados da AE1-2](../escopo-1/AE1-2/RESULTADOS_EXECUCAO.md)
-- [Arquivos e scripts](../../README.md)
-
-**Nota sobre a grade da API:** a requisição usou latitude -21.764 e longitude -43.350. A resposta da Open-Meteo identifica a célula retornada em **-21.75747, -43.384613** (elevação informada de 704 m). Essa diferença entre ponto solicitado e ponto retornado deve ser considerada na interpretação territorial. Fonte: `dados/original_open_meteo.json`.
+- [Registros da execução do projeto](../escopo-1/AE1-2/RESULTADOS_EXECUCAO.md)
