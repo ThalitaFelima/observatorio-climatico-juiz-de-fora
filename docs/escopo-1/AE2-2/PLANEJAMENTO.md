@@ -61,3 +61,11 @@ Explicar os indicadores em linguagem acessível, sem relacionar automaticamente 
 
 ## Estágio
 Planejamento realizado. Os indicadores meteorológicos reais e a devolutiva comunitária ainda dependem de execução e verificação. A AE1 mencionada no enunciado não foi fornecida; o recorte foi definido nesta proposta.
+
+## Diagramas anexados
+
+![Fluxo da solução](fluxo.svg)
+
+![Wireframe do dashboard](wireframe.svg)
+
+As imagens mostram o percurso dos dados até a visualização e a disposição dos três KPIs, dois gráficos, tabela, fonte e limitações.
