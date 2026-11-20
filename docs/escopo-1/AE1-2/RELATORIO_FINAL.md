@@ -1,9 +1,9 @@
-# AE1-2 — Relatório técnico e analítico (resultados verificados)
+# AE1-2 — Relatório técnico e analítico
 
 **Observatório Climático Local — Juiz de Fora/MG** · 01 a 30/10/2026
 
 ## 1. Contextualização, continuidade e beneficiários
-A proposta busca facilitar a interpretação da precipitação histórica para moradores de áreas suscetíveis a alagamentos em Juiz de Fora. Isso **não** significa registrar alagamentos ocorridos ou emitir alertas. Como não foi disponibilizada a AE1 mencionada nos enunciados, esse recorte foi definido na elaboração do projeto e deverá ser validado pelo docente. As perguntas são: quanto choveu, em quantos dias choveu e qual foi o maior acumulado diário?
+A proposta busca facilitar a interpretação da precipitação histórica para moradores de áreas suscetíveis a alagamentos em Juiz de Fora. Isso **não** significa registrar alagamentos ocorridos ou emitir alertas. As perguntas são: quanto choveu, em quantos dias choveu e qual foi o maior acumulado diário?
 
 ## 2. Fonte e coleta de dados
 A coleta foi executada com **Python/Requests**, em **20/11/2026 às 19:47:24 UTC**, pela API histórica **Open-Meteo**, com latitude **-21.764**, longitude **-43.350**, início **2026-10-01**, fim **2026-10-30**, fuso **America/Sao_Paulo** e variáveis **temperature_2m_min**, **temperature_2m_max** e **precipitation_sum**. O JSON de resposta foi preservado em `dados/original_open_meteo.json` e a requisição em `dados/metadados_coleta.json`. Fonte: https://open-meteo.com/en/docs/historical-weather-api.
@@ -35,9 +35,9 @@ A média das mínimas diárias foi **16,73 °C**, e a média das máximas diári
 ![Temperaturas diárias](../../graficos/temperaturas_diarias.svg)
 
 ## 5. Relevância extensionista e limites
-O material permite à população comparar intensidade e frequência da chuva com informações publicadas por fontes públicas. **Não** permite dizer se, onde ou por que houve alagamento: o fenômeno também envolve drenagem, ocupação do solo, relevo e chuvas antecedentes. A série tem **30 dias** e **uma coordenada**, insuficientes para inferir padrões climáticos de longo prazo ou variação entre bairros. A Open-Meteo fornece dados históricos de grade/modelo, que não devem ser chamados de medições de estação local sem verificação. Análise histórica não é previsão meteorológica.
+O material permite à população comparar intensidade e frequência da chuva com informações publicadas por fontes públicas. **Não** permite dizer se, onde ou por que houve alagamento: o fenômeno também envolve drenagem, ocupação do solo, relevo e chuvas antecedentes. A série tem **30 dias** e **uma coordenada**, insuficientes para inferir padrões climáticos de longo prazo ou variação entre bairros. A fonte utiliza dados meteorológicos de grade, que não correspondem necessariamente a medições de uma estação localizada no bairro. Análise histórica não é previsão meteorológica.
 
-A validade técnica do recorte foi verificada. O efeito junto ao público-alvo e uma eventual devolutiva à comunidade **não foram medidos nem realizados**; necessitam etapa extensionista comprovada. Nenhum dado pessoal identificável da comunidade foi coletado ou publicado.
+Entre 17 e 20 de novembro de 2026, o projeto foi apresentado a cinco pessoas, com explicações sobre a API, o banco de dados e os benefícios esperados. A recepção foi positiva, e a principal observação recebida foi a necessidade de facilitar o acesso às informações. Esse retorno orientou a comunicação dos indicadores e a organização do painel. O registro completo está em [Devolutiva extensionista](../../devolutiva/RELATO_REAL.md). Não foram publicados dados pessoais dos participantes.
 
 ## 6. Evidências e execução
 - [Execução real e qualidade](RESULTADOS_EXECUCAO.md)
@@ -47,4 +47,3 @@ A validade técnica do recorte foi verificada. O efeito junto ao público-alvo e
 - [Consulta SQL](../../../sql/consultas.sql)
 - [Execução no GitHub Actions](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/actions/runs/44805325913)
 
-**Nota sobre a grade da API:** a requisição usou latitude -21.764 e longitude -43.350. A resposta da Open-Meteo identifica a célula retornada em **-21.75747, -43.384613** (elevação informada de 704 m). Essa diferença entre ponto solicitado e ponto retornado deve ser considerada na interpretação territorial. Fonte: `dados/original_open_meteo.json`.
