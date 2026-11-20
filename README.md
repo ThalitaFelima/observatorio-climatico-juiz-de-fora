@@ -42,3 +42,17 @@ Mapeamento oficial da Prefeitura: https://sisurb.pjf.mg.gov.br/server/rest/servi
 Documentação da API: https://open-meteo.com/en/docs/historical-weather-api
 
 Os enunciados mencionam uma AE1 anterior, não disponibilizada. O recorte acima foi estabelecido para esta proposta e deve ser validado com o docente.
+
+
+## Entregas e execução verificadas (20/11/2026)
+O GitHub Actions **executou com sucesso** a coleta histórica, o banco DuckDB com carga repetida, as consultas e a validação do dashboard em navegador. Os dados obtidos totalizam **214,5 mm** de precipitação no período, com **30 registros únicos** e **0 ausências** nas variáveis escolhidas.
+
+**Documentos para entrega:**
+- [Planejamento AE2-2 — PDF](docs/escopo-1/AE2-2/PLANEJAMENTO.pdf) · [DOCX](docs/escopo-1/AE2-2/PLANEJAMENTO.docx) · [Markdown](docs/escopo-1/AE2-2/PLANEJAMENTO.md)
+- [Relatório técnico AE1-2 — PDF](docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf) · [DOCX](docs/escopo-1/AE1-2/RELATORIO_FINAL.docx) · [Markdown](docs/escopo-1/AE1-2/RELATORIO_FINAL.md)
+- [Consolidação final — PDF](docs/final/RELATORIO_FINAL.pdf) · [DOCX](docs/final/RELATORIO_FINAL.docx) · [Markdown](docs/final/RELATORIO_FINAL.md)
+- [Captura do dashboard Streamlit](docs/evidencias/dashboard_streamlit.png) · [Validação](docs/evidencias/VALIDACAO.md)
+- [Material educativo para moradores](docs/devolutiva/GUIA_PARA_MORADORES.md) · [Modelo de registro da devolutiva](docs/devolutiva/REGISTRO_E_AVALIACAO_MODELO.md)
+- [Resultado SQL e qualidade](docs/escopo-1/AE1-2/RESULTADOS_EXECUCAO.md) · [Gráfico de precipitação](docs/graficos/precipitacao_diaria.svg)
+
+**Limite extensionista:** a devolutiva à comunidade ainda **não foi realizada/comprovada** e depende de apresentação real e registro ético. O arquivo recebido como “Relatório Final” era uma proposta, não uma rubrica oficial confirmada. A resposta da API retornou célula próxima **(-21.75747, -43.384613)**, embora a solicitação tenha sido feita para **(-21.764, -43.350)**.
