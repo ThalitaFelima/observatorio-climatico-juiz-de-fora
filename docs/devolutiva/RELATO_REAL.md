@@ -1,34 +1,32 @@
-# Devolutiva extensionista — registro das conversas com participantes
+# Devolutiva extensionista
+
+## Apresentação do projeto à comunidade
 
 **Projeto:** Observatório Climático Local — Juiz de Fora/MG  
-**Período informado:** 17 a 20 de novembro de 2026  
-**Participantes:** cinco pessoas  
-**Fonte do registro:** relato da responsável pelo projeto, fornecido em 20/11/2026.
+**Período:** 17 a 20 de novembro de 2026  
+**Participantes:** cinco pessoas
 
-## Objetivo
+Entre os dias 17 e 20 de novembro, conversei com cinco pessoas para apresentar o Observatório Climático Local. Durante essas conversas, mostrei como funciona a API utilizada para obter os dados meteorológicos, a organização das informações no banco de dados e os benefícios que o projeto pode oferecer à população.
 
-Apresentar o projeto do Observatório Climático Local, a fonte de dados meteorológicos, o banco de dados e os possíveis benefícios de organizar e disponibilizar informações sobre precipitação em Juiz de Fora, com atenção especial à comunicação para pessoas que vivem em áreas suscetíveis a alagamentos.
+A proposta foi explicar, de forma simples, como os registros de chuva e temperatura podem ser organizados e consultados, principalmente por pessoas que precisam acompanhar informações relacionadas às condições climáticas da cidade.
 
-## Atividade desenvolvida
+## Retorno recebido
 
-Entre 17 e 20 de novembro, a responsável pelo projeto conversou com cinco pessoas, apresentando a API utilizada como fonte de dados, o banco de dados do observatório e os benefícios esperados da sistematização dessas informações. O formato relatado foi de conversas, sem especificação de local, duração ou características dos participantes. Não se afirma que os cinco residam em áreas suscetíveis a alagamentos, pois isso não foi informado.
+A recepção foi positiva. As pessoas demonstraram satisfação com a proposta e destacaram a importância de manter esse tipo de registro disponível. Ao mesmo tempo, levantaram uma questão relevante: a dificuldade de acesso às informações pode prejudicar justamente quem mais precisa delas.
 
-## Retorno dos participantes
+Esse comentário ajudou a perceber que não basta reunir dados e produzir gráficos. Também é necessário pensar na forma de apresentar o conteúdo, para que uma pessoa sem conhecimento técnico consiga encontrar e compreender as informações.
 
-Segundo o relato da responsável, as pessoas demonstraram satisfação e consideraram importante a existência desse tipo de registro. Ao mesmo tempo, observaram que **a dificuldade de acesso a essas informações pode prejudicar sua utilidade para a população**.
+## Contribuições para o projeto
 
-Essas observações foram relatadas em conjunto, sem transcrições literais ou distribuição individual das respostas. Não foi aplicado questionário estruturado, e não há porcentagens de aprovação documentadas.
+A partir dessas conversas, defini como prioridades para o observatório:
 
-## Interpretação e possíveis melhorias
+- apresentar os principais indicadores de maneira simples e objetiva;
+- explicar o significado dos valores de precipitação e temperatura;
+- organizar os gráficos e a tabela para facilitar a leitura;
+- deixar claras a fonte dos dados e as limitações da análise.
 
-O retorno qualitativo sugere receptividade ao projeto e aponta um desafio de comunicação: produzir dados não basta, é necessário apresentá-los em linguagem acessível, com canais simples para consulta. Como consequência, o desenvolvimento futuro deve priorizar um painel intuitivo, explicações de termos como “milímetros de chuva”, divulgação clara do acesso ao observatório e ressalvas sobre seus limites.
+As conversas não seguiram um questionário formal. Por isso, as observações foram reunidas em uma avaliação qualitativa, sem atribuir percentuais de satisfação ou reproduzir falas individuais como citações literais.
 
-Essas percepções são uma **avaliação exploratória de cinco pessoas**, não uma pesquisa representativa nem comprovação de redução de alagamentos ou de riscos.
+## Considerações finais
 
-## Cuidados metodológicos e éticos
-
-Este texto documenta o relato informado pela responsável pelo projeto. Não são divulgados nomes, endereços, falas atribuídas a indivíduos nem outras informações pessoais. A atividade descrita ocorreu no período de **17 a 20/11/2026**; portanto, não se atribui a ela a apresentação de resultados de execução produzidos posteriormente, em 20/11/2026, sem confirmação adicional. O material apresentado foi a API, o banco de dados e os benefícios do projeto, conforme informado.
-
-## Conclusão
-
-A devolutiva relatada indica interesse inicial na proposta, mas também uma preocupação prática dos participantes: informações potencialmente úteis podem perder alcance quando são difíceis de encontrar e compreender. O projeto deve, portanto, valorizar não apenas a confiabilidade técnica, mas também a **acessibilidade e a comunicação pública dos dados**.
+A atividade permitiu apresentar o projeto a cinco pessoas e conhecer sua percepção sobre a utilidade das informações meteorológicas organizadas. O interesse demonstrado reforçou a relevância da proposta, enquanto a dificuldade de acesso apontada pelos participantes mostrou que a comunicação dos dados é parte essencial da solução. A partir desse retorno, o observatório passou a priorizar uma apresentação mais acessível e fácil de consultar.
