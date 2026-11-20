@@ -52,7 +52,8 @@ O GitHub Actions **executou com sucesso** a coleta histórica, o banco DuckDB co
 - [Relatório técnico AE1-2 — PDF](docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf) · [DOCX](docs/escopo-1/AE1-2/RELATORIO_FINAL.docx) · [Markdown](docs/escopo-1/AE1-2/RELATORIO_FINAL.md)
 - [Consolidação final — PDF](docs/final/RELATORIO_FINAL.pdf) · [DOCX](docs/final/RELATORIO_FINAL.docx) · [Markdown](docs/final/RELATORIO_FINAL.md)
 - [Captura do dashboard Streamlit](docs/evidencias/dashboard_streamlit.png) · [Validação](docs/evidencias/VALIDACAO.md)
+- [Relato de devolutiva com cinco participantes](docs/devolutiva/RELATO_REAL.md)
 - [Material educativo para moradores](docs/devolutiva/GUIA_PARA_MORADORES.md) · [Modelo de registro da devolutiva](docs/devolutiva/REGISTRO_E_AVALIACAO_MODELO.md)
 - [Resultado SQL e qualidade](docs/escopo-1/AE1-2/RESULTADOS_EXECUCAO.md) · [Gráfico de precipitação](docs/graficos/precipitacao_diaria.svg)
 
-**Limite extensionista:** a devolutiva à comunidade ainda **não foi realizada/comprovada** e depende de apresentação real e registro ético. O arquivo recebido como “Relatório Final” era uma proposta, não uma rubrica oficial confirmada. A resposta da API retornou célula próxima **(-21.75747, -43.384613)**, embora a solicitação tenha sido feita para **(-21.764, -43.350)**.
+**Devolutiva:** segundo relato da responsável, cinco pessoas participaram de conversas entre 17 e 20/11/2026 sobre a API, o banco de dados e os benefícios do observatório. O retorno foi positivo, mas apontou a dificuldade de acesso às informações. Veja [o relato](docs/devolutiva/RELATO_REAL.md). O arquivo recebido como “Relatório Final” era uma proposta, não uma rubrica oficial confirmada. A resposta da API retornou célula próxima **(-21.75747, -43.384613)**, embora a solicitação tenha sido feita para **(-21.764, -43.350)**.
