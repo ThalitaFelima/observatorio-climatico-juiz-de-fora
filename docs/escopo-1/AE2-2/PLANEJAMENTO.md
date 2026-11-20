@@ -69,3 +69,5 @@ Planejamento realizado. Os indicadores meteorológicos reais e a devolutiva comu
 ![Wireframe do dashboard](wireframe.svg)
 
 As imagens mostram o percurso dos dados até a visualização e a disposição dos três KPIs, dois gráficos, tabela, fonte e limitações.
+
+**Nota sobre a grade da API:** a requisição usou latitude -21.764 e longitude -43.350. A resposta da Open-Meteo identifica a célula retornada em **-21.75747, -43.384613** (elevação informada de 704 m). Essa diferença entre ponto solicitado e ponto retornado deve ser considerada na interpretação territorial. Fonte: `dados/original_open_meteo.json`.
