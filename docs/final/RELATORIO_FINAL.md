@@ -30,10 +30,13 @@ O painel `src/app.py` contém três cartões de KPI, série de chuva, série de 
 O recorte permite comparar dias mais ou menos chuvosos e compreender unidades de precipitação. Não permite verificar alagamentos, prever novos eventos ou estabelecer risco para um bairro específico. Uma única coordenada não representa toda a cidade; 30 dias não caracterizam tendência climática. A fonte pode utilizar dados modelados/em grade. Os mapas municipais de suscetibilidade são uma fonte **distinta** dos dados de chuva; não se devem confundir suscetibilidade espacial e ocorrência de evento.
 
 ## Ética e devolutiva
-Nesta fase não foram recolhidos dados pessoais da comunidade. **Não houve devolutiva extensionista documentada**. Como próxima ação, recomenda-se apresentar os indicadores em linguagem acessível a um grupo comunitário e colher avaliação de entendimento, documentando data, formato, autorização das evidências e respostas. Não se reivindica impacto social não verificado.
+
+Conforme relato da responsável pelo projeto, **cinco pessoas** foram consultadas em conversas realizadas de **17 a 20 de novembro de 2026**, durante as quais foram apresentados a API meteorológica, o banco de dados e os benefícios esperados do observatório. As pessoas demonstraram satisfação e consideraram o registro importante, mas apontaram que **a dificuldade de acesso às informações pode prejudicar sua utilidade**. Trata-se de retorno qualitativo inicial, sem questionário formal, transcrições ou identificação individual, que não deve ser interpretado como pesquisa representativa.
+
+Esse retorno orienta a melhoria da linguagem, da navegação e da divulgação do painel para facilitar o acesso à informação. Não foram publicados dados pessoais e não se afirma que houve redução de risco ou impacto social mensurado. A descrição completa consta em [Relato da devolutiva](../devolutiva/RELATO_REAL.md).
 
 ## Critérios de sucesso
-**Verificados:** coleta preservada, 30 registros, 0 duplicidades, três KPIs, documentação versionada, testes e CI aprovados. **Ainda dependem de ação real:** validação de comunicação com beneficiários, devolutiva e avaliação de utilidade pública. Evoluções futuras: série maior, múltiplas coordenadas e integração responsável com registros oficiais de ocorrência.
+**Verificados:** coleta preservada, 30 registros, 0 duplicidades, três KPIs, documentação versionada, testes e CI aprovados. **Ainda dependem de ação real:** avaliação estruturada da usabilidade e da utilidade pública em uma amostra maior. Evoluções futuras: série maior, múltiplas coordenadas e integração responsável com registros oficiais de ocorrência.
 
 ## Fontes
 - [Open-Meteo Historical Weather API](https://open-meteo.com/en/docs/historical-weather-api)
