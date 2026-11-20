@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - ".github/workflows/finalizar-entregas.yml"
+      - "docs/final/RELATORIO_FINAL.md"
+      - "docs/devolutiva/RELATO_REAL.md"
 
 permissions:
   contents: write
