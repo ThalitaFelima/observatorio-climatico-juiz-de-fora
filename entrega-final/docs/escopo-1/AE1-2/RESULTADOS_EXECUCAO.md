@@ -18,9 +18,9 @@
 
 ## Indicadores e interpretação
 
-1. **Precipitação total:** **214.49999999999997 mm** (soma dos dias com informação). Indica o volume acumulado no ponto de referência, não volume de inundação urbana.
+1. **Precipitação total:** **214,5 mm** (soma dos dias com informação). Indica o volume acumulado no ponto de referência, não volume de inundação urbana.
 2. **Dias com chuva:** **30 dias** com precipitação superior a zero, entre **30 dias** válidos. Não deve ser confundido com dias de alagamento.
-3. **Maior precipitação diária:** **29.1 mm**, em **2026-10-30**. Isso não comprova evento de inundação.
+3. **Maior precipitação diária:** **29,1 mm**, em **30/10/2026**. Isso não comprova evento de inundação.
 
 ## Limitações
 A Open-Meteo disponibiliza dados meteorológicos históricos modelados/em grade, não necessariamente leituras de estação local. Uma única coordenada e 30 dias não descrevem a distribuição espacial nos bairros, nem demonstram ocorrência de alagamentos ou tendência climática. Em caso de risco, consultar Defesa Civil e alertas oficiais.
