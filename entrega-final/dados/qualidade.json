@@ -1,0 +1,18 @@
+{
+  "localidade": "Juiz de Fora",
+  "periodo": [
+    "2026-10-01",
+    "2026-10-30"
+  ],
+  "registros": 30,
+  "dias_esperados": 30,
+  "duplicatas": 0,
+  "campos_ausentes": {
+    "temperatura_min": 0,
+    "temperatura_max": 0,
+    "precipitacao_mm": 0
+  },
+  "validacoes": "aprovadas",
+  "observacao": "Ausências permanecem NULL; indicadores desconsideram NULL.",
+  "linhas_no_banco_apos_carga": 30
+}
