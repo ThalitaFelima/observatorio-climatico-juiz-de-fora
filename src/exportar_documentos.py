@@ -10,6 +10,7 @@ import cairosvg
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
     ROOT / "docs/escopo-1/AE2-2/PLANEJAMENTO.md",
+    ROOT / "entrega-final/docs/escopo-1/AE2-2/PLANEJAMENTO.md",
     ROOT / "docs/escopo-1/AE1-2/RELATORIO_FINAL.md",
     ROOT / "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.md",
     ROOT / "docs/final/RELATORIO_FINAL.md",

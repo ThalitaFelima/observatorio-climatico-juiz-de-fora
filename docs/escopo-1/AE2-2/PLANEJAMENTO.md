@@ -1,72 +1,85 @@
-# AE2-2 — Desenho técnico da solução
+# Atividade de Estudo 2 — AE2-2
+## Desenho técnico do Observatório Climático Local — versão 1
 
-**Projeto:** Observatório Climático Local — Juiz de Fora/MG. **Público-alvo:** moradores de áreas suscetíveis a alagamentos. **Objetivo:** facilitar o acesso a informações históricas de chuva e temperatura, com indicadores claros e consulta aos registros.
+**Problema e público.** O projeto pretende facilitar o acesso e a compreensão de informações históricas de chuva e temperatura por moradores de Juiz de Fora, especialmente interessados em áreas suscetíveis a alagamentos. Os registros não serão usados para afirmar que houve inundações.
 
-## Recorte
-Coordenadas de referência: latitude -21.764, longitude -43.350; período de 01 a 30/10/2026 (30 dias); fuso America/Sao_Paulo; API histórica Open-Meteo. Variáveis: mínima diária (°C), máxima diária (°C), precipitação diária (mm).
+**Recorte definido na AE1:** Juiz de Fora/MG (latitude -21.764, longitude -43.350), de 01 a 30/10/2026, **30 dias consecutivos** e fuso `America/Sao_Paulo`. Fonte: API histórica Open-Meteo. Três variáveis: temperatura mínima diária (°C), temperatura máxima diária (°C) e precipitação diária (mm). O recorte e as perguntas planejadas foram mantidos.
 
-## Dicionário de dados — tabela `clima_diario`
+## 1. Dicionário de dados — versão 1
 
-| Campo | Tipo DuckDB | Origem e descrição | Regra |
+A tabela principal prevista é `clima_diario`, com uma linha por localidade e data.
+
+| Campo | Tipo DuckDB | Descrição / unidade | Origem | Regra de preenchimento e validação |
+| --- | --- | --- | --- | --- |
+| `cidade` | VARCHAR | Nome do município | Configuração: Juiz de Fora | Obrigatório; padronizado; parte da PK |
+| `uf` | VARCHAR | Estado (sigla) | Configuração: MG | Obrigatório; duas letras |
+| `latitude` | DOUBLE | Latitude, graus decimais | Configuração: -21.764 | Obrigatório; de -90 a 90 |
+| `longitude` | DOUBLE | Longitude, graus decimais | Configuração: -43.350 | Obrigatório; de -180 a 180 |
+| `data` | DATE | Data do registro diário | `daily.time` | Obrigatória; no recorte; parte da PK |
+| `temperatura_min` | DOUBLE | Mínima diária (°C) | `daily.temperature_2m_min` | Aceita NULL; numérica; ≤ máxima quando ambas presentes |
+| `temperatura_max` | DOUBLE | Máxima diária (°C) | `daily.temperature_2m_max` | Aceita NULL; numérica; ≥ mínima quando ambas presentes |
+| `precipitacao_mm` | DOUBLE | Chuva diária acumulada (mm) | `daily.precipitation_sum` | Aceita NULL; numérica; ≥ 0 |
+
+As coordenadas armazenadas serão as solicitadas à API. A localização da célula meteorológica de referência pode diferir das coordenadas informadas.
+
+## 2. Modelo lógico e fluxo
+
+**Modelo:** `clima_diario(cidade, uf, latitude, longitude, data, temperatura_min, temperatura_max, precipitacao_mm)`. **PK composta:** `(cidade, data)`, que impede registros repetidos para o mesmo município e dia. Serão obrigatórios cidade, uf, latitude, longitude e data; as medidas meteorológicas admitem valores ausentes. Há **uma tabela, sem FK ou relacionamentos** nesta versão. A carga será precedida de verificação de duplicidade e usará atualização por chave (UPSERT) em reexecuções.
+
+**Fluxo previsto:** Open-Meteo → Python/Requests e JSON original preservado → pandas e validação → DuckDB → consultas SQL → painel Streamlit → comunicação com a comunidade. O GitHub reunirá os arquivos e acompanhará as tarefas.
+
+![Fluxo técnico da solução](fluxo.svg)
+
+## 3. Plano de qualidade — checagens antes da carga
+
+| Checagem | Campo(s) | Regra ou teste | Ação em caso de falha |
 | --- | --- | --- | --- |
-| cidade | VARCHAR | Configuração; município | NOT NULL; parte da PK |
-| uf | VARCHAR | Configuração; estado | NOT NULL |
-| latitude | DOUBLE | Configuração; latitude decimal | NOT NULL; [-90,90] |
-| longitude | DOUBLE | Configuração; longitude decimal | NOT NULL; [-180,180] |
-| data | DATE | Open-Meteo daily.time | NOT NULL, no intervalo; parte da PK |
-| temperatura_min | DOUBLE | daily.temperature_2m_min; °C | Nullable; numérica, <= máxima |
-| temperatura_max | DOUBLE | daily.temperature_2m_max; °C | Nullable; numérica, >= mínima |
-| precipitacao_mm | DOUBLE | daily.precipitation_sum; mm | Nullable; numérica, >= 0 |
+| Estrutura da API | `daily.time` e três medidas | Listas obrigatórias presentes | Interromper e registrar a resposta |
+| Alinhamento | Listas diárias | Todas com mesmo tamanho | Investigar antes de criar linhas |
+| Campos obrigatórios | Cidade, UF, coordenadas, data | Nenhum NULL ou vazio | Corrigir configuração ou bloquear carga |
+| Datas | `data` | Data válida entre 01 e 30/10/2026 | Identificar e rejeitar registro |
+| Cobertura | `data` | Exatamente 30 dias consecutivos | Relatar lacunas e revisar a fonte |
+| Duplicidade | `cidade`, `data` | Uma linha por combinação | Investigar e bloquear repetição |
+| Tipos e unidades | Três variáveis | Numéricos em °C/mm, ou NULL | Registrar valor incompatível; não inventar correção |
+| Temperaturas | Mínima, máxima | Mínima ≤ máxima quando presentes | Investigar e impedir carga inconsistente |
+| Precipitação | `precipitacao_mm` | Maior ou igual a zero quando presente | Investigar e rejeitar valor negativo |
+| Ausências | Três variáveis | Contar NULL por coluna | Preservar NULL e informar cobertura |
+| Plausibilidade | Mínima, máxima | Sinalizar valores fora de -30 a 60 °C | Investigar fonte; faixa ampla de triagem, não limite climatológico local |
 
-## Modelo lógico
-`clima_diario(cidade PK, data PK, uf, latitude, longitude, temperatura_min, temperatura_max, precipitacao_mm)`. Chave composta (cidade, data), uma única tabela, sem chave estrangeira nesta versão. Reexecução de carga com UPSERT para evitar duplicação.
+**Zero não equivale a ausência de informação:** 0 mm indica precipitação nula no registro disponível; NULL indica falta de dado. Não se preencherão ausências automaticamente.
 
-**Fluxo:** Open-Meteo → Requests/JSON original → pandas/validação → DuckDB → SQL/KPIs → Streamlit → comunicação para público leigo.
+## 4. Plano de análise e produto final
 
-## Plano de qualidade
+### 4.1. Perguntas, indicadores e visuais
 
-| Checagem | Regra | Tratamento |
-| --- | --- | --- |
-| Presença de campos | campos da API obrigatórios | Rejeitar estrutura inválida |
-| Tamanho das listas | tamanhos iguais | Interromper e revisar resposta |
-| Datas | conversíveis para DATE e dentro do recorte | Rejeitar |
-| Cobertura | 30 dias consecutivos | Interromper carga |
-| Duplicação | 1 linha por cidade e data | Rejeitar dados; PK/UPSERT na carga |
-| Tipos | variáveis numéricas ou NULL | Rejeitar valor não numérico |
-| Mínima e máxima | mínima <= máxima quando presentes | Rejeitar inconsistência |
-| Precipitação | >=0 quando presente | Rejeitar negativo |
-| Ausências | contar NULL e distinguir de zero | Preservar NULL e informar cobertura |
-| Faixas de triagem | temperatura entre -30 e 60 °C | Investigar; faixa de triagem, não limite físico regional |
+| Pergunta | Campos necessários | Consulta/cálculo planejado | Indicador e unidade | Gráfico/tabela | Utilidade para moradores |
+| --- | --- | --- | --- | --- | --- |
+| Quanto choveu? | Cidade, data, precipitação | `SUM(precipitacao_mm)` no período | Chuva acumulada (mm) | Cartão e barras diárias | Comparar o volume acumulado entre dias |
+| Em quantos dias choveu? | Cidade, data, precipitação | `COUNT(*) FILTER (WHERE precipitacao_mm > 0)` | Dias com chuva (dias) | Cartão e tabela | Entender a frequência de registros positivos |
+| Qual foi o dia de maior chuva? | Cidade, data, precipitação | `MAX(precipitacao_mm)` e data associada | Máximo diário (mm e data) | Cartão e barras diárias | Identificar o maior valor no recorte |
 
-## Perguntas, indicadores e visuais
-1. Quanto choveu no período? **Soma de precipitação em mm**, ignorando NULL; gráfico de barras diário.
-2. Em quantos dias houve chuva? **Contagem de registros com precipitação >0 mm**, em dias; tabela e gráfico.
-3. Qual o dia de maior precipitação? **Máximo diário em mm e data**, desconsiderando NULL; gráfico de barras.
+**Critérios dos indicadores:**
 
-Análise adicional: linha de mínimas/máximas por dia (°C). Mostrar fonte, unidade, datas, registros válidos, limitações e tabela consultável.
+1. **Acumulado:** soma em mm dos dias com valores disponíveis; `SUM` ignora NULL. Comparar `COUNT(precipitacao_mm)` com `COUNT(*)` para informar a cobertura. Não representa volume de alagamento.
+2. **Dias com chuva:** contar datas cuja precipitação seja estritamente superior a zero; ignorar NULL e informar o número de dias com valor disponível. Pode incluir chuva fraca; não é contagem de alagamentos.
+3. **Maior dia:** obter a maior precipitação não nula e sua data, adotando desempate cronológico ou informando empates. Se não houver dados válidos, exibir “sem dados”, nunca 0 mm fictício. O valor descreve apenas o extremo do período.
 
-## Wireframe do painel
-```text
-OBSERVATÓRIO CLIMÁTICO — JUIZ DE FORA
-01–30/10/2026 | Open-Meteo | Coordenadas de referência
-[Chuva acumulada (mm)] [Dias com chuva] [Maior chuva diária (mm)]
-[Gráfico: precipitação por dia]
-[Gráfico: temperatura mínima e máxima por dia]
-[Tabela de dados]
-[Fonte, unidades, ressalvas sobre limites e Defesa Civil]
-```
+**Dois gráficos planejados:** barras para a precipitação diária (mm) e linhas para as temperaturas mínima e máxima ao longo das datas (°C). **Tabela consultável:** data, cidade e três medidas meteorológicas. Os dados serão ordenados cronologicamente, com fonte e unidades explícitas. Poderá ser oferecido filtro de dias para recalcular a seleção. **Não se antecipam resultados numéricos nesta fase de planejamento.**
 
-## Comunicação extensionista
-Explicar os indicadores em linguagem acessível, sem relacionar automaticamente chuva de um ponto a alagamento de um bairro. Comparar, quando apropriado, com os mapas oficiais de suscetibilidade, **sem inferir episódios de inundação**. Não recolher dados pessoais sem base e cuidados pertinentes. A devolutiva incluiu conversas com cinco pessoas entre 17 e 20 de novembro de 2026. O retorno destacou a importância do projeto e a necessidade de tornar as informações mais fáceis de acessar.
+### 4.2. Wireframe em Streamlit
 
-## Aplicação do planejamento
-O planejamento orientou a coleta de 30 dias de dados, a organização do banco, as consultas SQL e a construção do painel Streamlit. As verificações e os resultados encontram-se documentados nas demais etapas do projeto.
+A disposição prevista contém título, localidade e período, três cartões de KPI, dois gráficos, tabela de registros e espaço para fonte, unidades, explicações e limitações.
 
-## Diagramas anexados
+![Wireframe do painel](wireframe.svg)
 
-![Fluxo da solução](fluxo.svg)
+### 4.3. Comunicação extensionista
 
-![Wireframe do dashboard](wireframe.svg)
+O painel deverá ajudar moradores a consultar registros históricos em linguagem simples, com explicação de mm, °C, datas, totais e limites. Na apresentação ao público, serão colhidas dúvidas e sugestões de clareza, sem exposição de nomes, contatos ou imagens pessoais sem autorização. A fonte representa dados meteorológicos históricos em grade, não necessariamente medições diretas de estação local. Não serão emitidas previsões, alertas ou conclusões sobre alagamentos baseadas apenas nesses indicadores; informações de risco dependerão das fontes oficiais.
 
-As imagens mostram o percurso dos dados até a visualização e a disposição dos três KPIs, dois gráficos, tabela, fonte e limitações.
+## 5. GitHub — documentação e tarefas
 
+O repositório contém o desenho e os diagramas em `docs/escopo-1/AE2-2/`, o README e as pastas `src/`, `dados/` e `sql/`. O documento descreve a **solução planejada**, embora o repositório também reúna implementações de etapas posteriores.
+
+As **sete issues** da implementação possuem descrição e condição de conclusão: [#1 coleta](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/1), [#2 JSON original](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/2), [#3 pandas e qualidade](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/3), [#4 DuckDB](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/4), [#5 SQL e KPIs](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/5), [#6 Streamlit](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/6) e [#7 documentação e comunicação](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues/7).
+
+**Fonte:** [Open-Meteo — API histórica](https://open-meteo.com/en/docs/historical-weather-api).
