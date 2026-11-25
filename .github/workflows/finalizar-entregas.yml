@@ -5,14 +5,11 @@ on:
     paths:
       - ".github/workflows/finalizar-entregas.yml"
       - "docs/final/RELATORIO_FINAL.md"
-      - "entrega-final/docs/final/RELATORIO_FINAL.md"
       - "docs/devolutiva/RELATO_REAL.md"
       - "docs/escopo-1/AE1-2/RELATORIO_FINAL.md"
       - "docs/escopo-1/AE2-2/PLANEJAMENTO.md"
       - "README.md"
       - "src/exportar_documentos.py"
-      - "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.md"
-      - "entrega-final/docs/escopo-1/AE2-2/PLANEJAMENTO.md"
       - "src/app.py"
       - "tests/test_painel.py"
 
@@ -65,6 +62,36 @@ jobs:
               if not 2 <= paginas <= 4:
                   raise AssertionError(f"Relatório AE1 fora do limite de 2 a 4 páginas: {paginas}")
           PY
+      - name: Conferir links e arquivos essenciais
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import re
+          root = Path.cwd()
+          readme = (root / "README.md").read_text(encoding="utf-8")
+          for target in re.findall(r"\\]\(([^)]+)\\)", readme):
+              if target.startswith(("http://", "https://", "#")):
+                  continue
+              arquivo = root / target.split("#", 1)[0]
+              if not arquivo.is_file():
+                  raise AssertionError(f"Link local inválido no README: {target}")
+          essenciais = [
+              "docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf",
+              "docs/escopo-1/AE2-2/PLANEJAMENTO.pdf",
+              "docs/final/RELATORIO_FINAL.pdf",
+              "dados/clima.duckdb",
+              "dados/original_open_meteo.json",
+              "dados/metadados_coleta.json",
+              "sql/consultas.sql",
+              "src/coleta.py", "src/banco.py", "src/app.py",
+          ]
+          for path in essenciais:
+              if not (root / path).is_file():
+                  raise AssertionError(f"Arquivo obrigatório ausente: {path}")
+          if (root / "entrega-final").exists():
+              raise AssertionError("Cópia redundante da pasta entrega-final")
+          print("Estrutura e links locais do README: válidos.")
+          PY
       - name: Preparar navegador para captura de evidências
         run: python -m playwright install chromium
       - name: Capturar painel em execução real
@@ -100,11 +127,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/escopo-1/AE2-2/PLANEJAMENTO.pdf docs/escopo-1/AE2-2/PLANEJAMENTO.docx
-          git add entrega-final/docs/escopo-1/AE2-2/PLANEJAMENTO.pdf entrega-final/docs/escopo-1/AE2-2/PLANEJAMENTO.docx
           git add docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf docs/escopo-1/AE1-2/RELATORIO_FINAL.docx
-          git add entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.docx
           git add docs/final/RELATORIO_FINAL.pdf docs/final/RELATORIO_FINAL.docx
-          git add entrega-final/docs/final/RELATORIO_FINAL.pdf entrega-final/docs/final/RELATORIO_FINAL.docx
           git add docs/evidencias/
           if ! git diff --cached --quiet; then
             git commit -m "docs: publicar relatórios finais e evidência visual do Streamlit"

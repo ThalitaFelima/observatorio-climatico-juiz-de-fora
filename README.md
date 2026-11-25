@@ -51,6 +51,10 @@ O painel permite escolher um intervalo de dias, visualizar os resultados corresp
 
 A pasta `dados/` contém a resposta original da API, o CSV diário, os metadados de coleta, o relatório de qualidade e o banco DuckDB. Os arquivos podem ser reproduzidos pelos scripts. A chave composta `(cidade, data)` evita duplicações em novas cargas.
 
+## Entrega das atividades
+
+Cada atividade possui um relatório próprio, disponível em PDF e em formato Word editável. **Para enviar à faculdade, anexe o PDF correspondente e informe o endereço deste repositório.** O relatório de consolidação descreve os resultados da implementação e a comunicação inicial com cinco pessoas, sem afirmar que houve avaliação formal de um site público.
+
 ## Arquivos e entregas
 
 | Material | Acesso |
@@ -63,7 +67,7 @@ A pasta `dados/` contém a resposta original da API, o CSV diário, os metadados
 | Gráficos | [Precipitação](docs/graficos/precipitacao_diaria.svg) · [Temperaturas](docs/graficos/temperaturas_diarias.svg) |
 | Comunicação com a comunidade | [Devolutiva](docs/devolutiva/RELATO_REAL.md) · [Guia de leitura](docs/devolutiva/GUIA_PARA_MORADORES.md) |
 
-Os códigos estão em `src/`, as consultas em `sql/`, os testes em `tests/` e a documentação em `docs/`. As conferências estão documentadas por aula: [Aula 1](docs/CONFERENCIA_AULA_1.md), [Aula 2](docs/CONFERENCIA_AULA_2.md), [Aula 3](docs/CONFERENCIA_AULA_3.md) e [Aula 4](docs/CONFERENCIA_AULA_4.md). O andamento das atividades foi acompanhado pelas [issues](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues).
+Os códigos estão em `src/`, as consultas em `sql/`, os testes em `tests/` e a documentação em `docs/`. O planejamento e a execução podem ser acompanhados nas [sete issues do projeto](https://github.com/ThalitaFelima/observatorio-climatico-juiz-de-fora/issues).
 
 ## Devolutiva à comunidade
 
