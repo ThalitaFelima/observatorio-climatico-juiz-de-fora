@@ -54,8 +54,7 @@ jobs:
           python - <<'PY'
           from pypdf import PdfReader
           for caminho in [
-              "docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf",
-              "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf"
+              "docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf"
           ]:
               paginas = len(PdfReader(caminho).pages)
               print(f"{caminho}: {paginas} páginas")
