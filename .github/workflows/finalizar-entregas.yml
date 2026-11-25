@@ -9,6 +9,8 @@ on:
       - "docs/escopo-1/AE1-2/RELATORIO_FINAL.md"
       - "docs/escopo-1/AE2-2/PLANEJAMENTO.md"
       - "README.md"
+      - "src/exportar_documentos.py"
+      - "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.md"
       - "src/app.py"
       - "tests/test_painel.py"
 
@@ -84,6 +86,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add docs/escopo-1/AE2-2/PLANEJAMENTO.pdf docs/escopo-1/AE2-2/PLANEJAMENTO.docx
           git add docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf docs/escopo-1/AE1-2/RELATORIO_FINAL.docx
+          git add entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.docx
           git add docs/final/RELATORIO_FINAL.pdf docs/final/RELATORIO_FINAL.docx
           git add docs/evidencias/
           if ! git diff --cached --quiet; then

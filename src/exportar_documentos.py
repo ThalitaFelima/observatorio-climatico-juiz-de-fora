@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCES = [
     ROOT / "docs/escopo-1/AE2-2/PLANEJAMENTO.md",
     ROOT / "docs/escopo-1/AE1-2/RELATORIO_FINAL.md",
+    ROOT / "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.md",
     ROOT / "docs/final/RELATORIO_FINAL.md",
 ]
 CSS = """
@@ -26,6 +27,9 @@ img { max-width: 100%; max-height: 140mm; object-fit: contain; }
 blockquote { border-left: 3px solid #789cae; padding: 7px 13px; color: #42555f; }
 code { font-size: 8pt; }
 p { margin: 5px 0 8px; }
+pre { white-space: pre-wrap; overflow-wrap: anywhere; font-size: 7.5pt; line-height: 1.2; padding: 5px 7px; background: #f5f8fa; }
+h2, h3, table thead { break-after: avoid; }
+tr { break-inside: avoid; }
 """
 def simplify(s):
     return re.sub(r"\[([^]]+)\]\([^)]*\)", r"\1",
