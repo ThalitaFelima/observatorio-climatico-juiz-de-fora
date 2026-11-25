@@ -3,7 +3,7 @@
 **Origem:** API histórica Open-Meteo. **Data da coleta (UTC):** 2026-11-20T20:19:53.646964+00:00.
 **Localidade:** Juiz de Fora, MG (coordenadas de referência -21.764, -43.350).
 **Recorte:** 01 a 30 de outubro de 2026; fuso America/Sao_Paulo.
-**Parâmetros:** `https://archive-api.open-meteo.com/v1/archive?latitude=-21.764&longitude=-43.35&start_date=2026-10-01&end_date=30/10/2026&daily=temperature_2m_min%2Ctemperature_2m_max%2Cprecipitation_sum&timezone=America%2FSao_Paulo`.
+**Parâmetros:** `https://archive-api.open-meteo.com/v1/archive?latitude=-21.764&longitude=-43.35&start_date=2026-10-01&end_date=2026-10-30&daily=temperature_2m_min%2Ctemperature_2m_max%2Cprecipitation_sum&timezone=America%2FSao_Paulo`.
 
 ## Qualidade dos dados
 
@@ -20,7 +20,7 @@
 
 1. **Precipitação total:** **214,5 mm** (soma dos dias com informação). Indica o volume acumulado no ponto de referência, não volume de inundação urbana.
 2. **Dias com chuva:** **30 dias** com precipitação superior a zero, entre **30 dias** válidos. Não deve ser confundido com dias de alagamento.
-3. **Maior precipitação diária:** **29,1 mm**, em **2026-10-30**. Isso não comprova evento de inundação.
+3. **Maior precipitação diária:** **29,1 mm**, em **30/10/2026**. Isso não comprova evento de inundação.
 
 ## Limitações
 A Open-Meteo disponibiliza dados meteorológicos históricos modelados/em grade, não necessariamente leituras de estação local. Uma única coordenada e 30 dias não descrevem a distribuição espacial nos bairros, nem demonstram ocorrência de alagamentos ou tendência climática. Em caso de risco, consultar Defesa Civil e alertas oficiais.
