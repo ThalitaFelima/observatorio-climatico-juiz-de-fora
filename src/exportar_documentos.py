@@ -14,6 +14,7 @@ SOURCES = [
     ROOT / "docs/escopo-1/AE1-2/RELATORIO_FINAL.md",
     ROOT / "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.md",
     ROOT / "docs/final/RELATORIO_FINAL.md",
+    ROOT / "entrega-final/docs/final/RELATORIO_FINAL.md",
 ]
 CSS = """
 @page { size: A4; margin: 17mm 18mm; }

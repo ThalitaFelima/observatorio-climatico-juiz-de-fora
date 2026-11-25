@@ -47,7 +47,9 @@ python -m unittest discover -s tests -v
 streamlit run src/app.py
 ```
 
-O painel permite escolher um intervalo de dias, visualizar os resultados correspondentes e baixar a tabela selecionada em CSV. Ele consulta o banco em modo de leitura, sem repetir a coleta.\n\nA pasta `dados/` contém a resposta original da API, o CSV diário, os metadados de coleta, o relatório de qualidade e o banco DuckDB. Os arquivos podem ser reproduzidos pelos scripts. A chave composta `(cidade, data)` evita duplicações em novas cargas.
+O painel permite escolher um intervalo de dias, visualizar os resultados correspondentes e baixar a tabela selecionada em CSV. Ele consulta o banco em modo de leitura, sem repetir a coleta.
+
+A pasta `dados/` contém a resposta original da API, o CSV diário, os metadados de coleta, o relatório de qualidade e o banco DuckDB. Os arquivos podem ser reproduzidos pelos scripts. A chave composta `(cidade, data)` evita duplicações em novas cargas.
 
 ## Arquivos e entregas
 
