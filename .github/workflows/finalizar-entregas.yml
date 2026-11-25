@@ -31,7 +31,7 @@ jobs:
       - name: Instalar dependências do projeto e da documentação
         run: |
           python -m pip install -r requirements.txt
-          python -m pip install markdown weasyprint python-docx cairosvg playwright
+          python -m pip install markdown weasyprint python-docx cairosvg playwright pypdf
       - name: Verificar integridade dos registros e testes
         run: |
           python -m unittest discover -s tests -v
@@ -50,6 +50,19 @@ jobs:
           PY
       - name: Exportar documentação final
         run: python src/exportar_documentos.py
+      - name: Conferir limite de páginas da AE1
+        run: |
+          python - <<'PY'
+          from pypdf import PdfReader
+          for caminho in [
+              "docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf",
+              "entrega-final/docs/escopo-1/AE1-2/RELATORIO_FINAL.pdf"
+          ]:
+              paginas = len(PdfReader(caminho).pages)
+              print(f"{caminho}: {paginas} páginas")
+              if not 2 <= paginas <= 4:
+                  raise AssertionError(f"Relatório AE1 fora do limite de 2 a 4 páginas: {paginas}")
+          PY
       - name: Preparar navegador para captura de evidências
         run: python -m playwright install chromium
       - name: Capturar painel em execução real
@@ -91,5 +104,6 @@ jobs:
           git add docs/evidencias/
           if ! git diff --cached --quiet; then
             git commit -m "docs: publicar relatórios finais e evidência visual do Streamlit"
+            git pull --rebase origin main
             git push
           fi
