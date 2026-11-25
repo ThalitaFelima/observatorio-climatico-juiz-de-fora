@@ -68,7 +68,7 @@ jobs:
           import re
           root = Path.cwd()
           readme = (root / "README.md").read_text(encoding="utf-8")
-          for target in re.findall(r"\\]\(([^)]+)\\)", readme):
+          for target in re.findall(r"\]\(([^)]+)\)", readme):
               if target.startswith(("http://", "https://", "#")):
                   continue
               arquivo = root / target.split("#", 1)[0]
